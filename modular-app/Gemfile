@@ -1,0 +1,20 @@
+source 'http://rubygems.org'
+
+gem 'rails'
+# gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+gem 'sqlite3'
+gem 'mongrel'
+
+gem "modular", :path => ".."
+
+group :development, :test do
+  gem 'autotest-standalone'
+  gem 'autotest-rails-pure'
+
+  gem 'rspec-rails', '~> 2.5.0'
+  gem 'ruby-debug'
+  gem 'webrat'
+  
+  gem 'autotest-growl', :require => false
+end

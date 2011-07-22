@@ -1,0 +1,9 @@
+Description:
+    Creates modular component.
+
+Example:
+    rails generate component Thing
+
+    This will create:
+        Component: app/components/thing.rb
+        View: app/views/components/thing.html.erb
