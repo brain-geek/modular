@@ -7,9 +7,10 @@ module Modular
   module Components
     class Base < Modular::Helpers::AbstractModel
       #rendering
-      include AbstractController::Rendering
+      include AbstractController
+      include Rendering, Helpers
       include Modular::Components::DirectRender
-      
+
       #slug
       def self.type
         self.name.rpartition("::").last

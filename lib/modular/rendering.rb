@@ -13,9 +13,14 @@ module Modular
           type.underscore
         end
         
-        def execute
+        def config
+          ActionController::Base.config
         end
-  
+        
+        def execute
+          
+        end
+        
         def render
           execute
           modular_render :render_type => :direct
@@ -45,6 +50,9 @@ module Modular
                a.html_safe
             end
           end
+          
+          context.send :include, Rails.application.routes.url_helpers
+          
           context
         end
       end
