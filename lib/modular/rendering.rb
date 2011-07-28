@@ -51,7 +51,9 @@ module Modular
             end
           end
           
-          context.send :include, Rails.application.routes.url_helpers
+          context.send :include, Rails.application.routes.url_helpers if defined? Rails
+          
+          context.send :include, ApplicationHelper if defined? ApplicationHelper
           
           context
         end
