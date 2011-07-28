@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Alex Rozumiy"]
   s.email       = ["brain-geek@yandex.ua"]
-  s.homepage    = "http://zn.ua"
+  s.homepage    = "https://github.com/brain-geek/modular"
   s.summary     = %q{This gem provides functionality for modular frontend layout}
   s.description = %q{This gem provides functionality for modular frontend layout}
 
