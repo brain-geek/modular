@@ -1,2 +1,5 @@
-* Fix autotest discovery to use one autotest, not two separate
-* Use custom context
+***	Allow accessing request object from components
+** 	Write README with usage examples
+** 	Write sample app
+* 	Fix autotest discovery
+* 	Clean up obsolete classes/components in app
