@@ -60,7 +60,7 @@ module Modular
     end
     
     def template_variables
-      @params.merge :layout_id => @id
+      { :original_layout => 'application' }.merge(@params.merge(:layout_id => @id))
     end
   end
 end

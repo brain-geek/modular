@@ -1,7 +1,5 @@
 <%% @layout_id = '<%=@layout_id%>'.to_sym %>
 
-
-
 <% layout = Modular.layout(@layout_id) %>
 
 <% if layout.is_a? Modular::Components::IndirectRender %>
@@ -11,7 +9,7 @@
 <% end %>
 
 <%% 
-    layout = 'application'
+    layout = '<%=@original_layout%>'
     @_content_for[:layout] = self.output_buffer
     self.output_buffer = render(:file => "layouts/#{layout}")
  %>
