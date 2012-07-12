@@ -3,7 +3,7 @@ require 'erb'
 module Modular
   class LayoutGenerator
     class ERBContext
-      def initialize(hash)
+      def initialize(hash = {})
         hash.each_pair do |key, value|
           instance_variable_set('@' + key.to_s, value)
         end
@@ -23,7 +23,7 @@ module Modular
       filename.to_s
     end
 
-    def initialize(id, params)
+    def initialize(id, params= {})
       @id = id
       @params = params
     end
@@ -38,7 +38,7 @@ module Modular
     end
     
     def layout_exists?
-      if (defined? Rails) && (Rails.configuration.action_controller.perform_caching)
+      if Rails.configuration.action_controller.perform_caching
         File.exists?(filename)
       else
         false
@@ -48,13 +48,14 @@ module Modular
     def write_layout
       folder = self.foldername
       filename = self.filename
-      
-      Dir.mkdir(folder) unless File.exists? folder
+      path = "#{Rails.root}/#{folder}"
+
+      Dir.mkdir(path) unless File.exists? path
       
       template = ERB.new File.new(Gem.loaded_specs['modular'].full_gem_path + '/templates/layout.erb').read
       output = template.result(ERBContext.new(template_variables).get_binding)
       
-      File.open(filename, 'w') do |f| 
+      File.open("#{Rails.root}/#{filename}", 'w') do |f| 
         f.write(output)
       end
     end

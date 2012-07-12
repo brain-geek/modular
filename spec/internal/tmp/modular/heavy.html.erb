@@ -1,0 +1,19 @@
+<% @layout_id = 'heavy'.to_sym %>
+
+
+
+<table>
+  <tr><td>
+		<h1>Template - Best news feed</h1>
+		<h3>Template for HeavyTask</h3>
+
+  </td></tr>
+</table>
+
+
+<% 
+    layout = 'application'
+    #Old one is @_content_for
+    @view_flow.content[:layout] = self.output_buffer
+    self.output_buffer = render(:file => "layouts/#{layout}")
+ %>

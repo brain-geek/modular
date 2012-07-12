@@ -1,7 +1,15 @@
 require 'rubygems'
 require 'bundler'
-require 'modular'
+Bundler.require :default, :development
 
-Dir.glob('modular-app/app/components/*.rb').each {|f| require f }
+require 'capybara/rspec'
 
-Bundler.require(:default, :development)
+Combustion.initialize!
+
+require 'rspec/rails'
+require 'capybara/rails'
+require 'modular/railtie'
+
+RSpec.configure do |config|
+  config.use_transactional_fixtures = true
+end

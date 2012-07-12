@@ -1,0 +1,28 @@
+<% @layout_id = 'nested'.to_sym %>
+
+
+
+<table>
+  <tr><td>
+		<h1>Template - Best news feed</h1>
+		<table>
+  <tr><td>
+		<div>
+  <h3>FooBar component!</h3>
+  <p>Nested component</p>
+</div>
+
+  </td></tr>
+</table>
+
+		<%=yield%>
+  </td></tr>
+</table>
+
+
+<% 
+    layout = 'application'
+    #Old one is @_content_for
+    @view_flow.content[:layout] = self.output_buffer
+    self.output_buffer = render(:file => "layouts/#{layout}")
+ %>

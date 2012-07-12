@@ -1,5 +1,4 @@
 require 'abstract_controller'
-require "modular/abstract_model"
 require "modular/rendering"
 require "modular/caching"
 
@@ -7,9 +6,13 @@ module Modular
   module Components
     class Base < Modular::Helpers::AbstractModel
       #rendering
-      include AbstractController
-      include Rendering, Helpers
-      include Modular::Components::DirectRender
+      include AbstractController::Rendering
+      include AbstractController::Helpers
+      include Modular::Rendering
+
+      def self.abstract?
+        true
+      end
 
       #slug
       def self.type
@@ -21,10 +24,9 @@ module Modular
       end
 
       #params for element itself
-      attr_reader_with_default :width, 300
-      attr_reader :title
+      attr_accessor :title
       
-      validates :title, :length => {:maximum => 64}
+      validates :title, :length => {:maximum => 64}      
     end
   end
 end

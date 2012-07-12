@@ -1,22 +1,23 @@
+require 'singleton'
+
 module Modular
   class Configuration
-    attr_accessor_with_default :columns, 12
-    attr_accessor_with_default :column_width, 68
-    attr_accessor_with_default :padding_width, 15
+    include ::Singleton
+
     attr_reader :layouts
     
     def self.config
-      @@config ||= new
+      self.instance
     end
   
     def self.configure(&block)
-      @@config = new
-      @@config.instance_eval &block if block_given?
-      @@config
+      instance = self.instance
+      instance.instance_eval &block if block_given?
+      instance
     end
     
-    def register_layout(layout, mod = :Container, params = {}, &block)
-      @layouts ||= {}.with_indifferent_access
+    def register_layout(layout, mod = :container, params = {}, &block)
+      @layouts ||= Hash.new.with_indifferent_access
       
       if mod.is_a? Components::Base
         @layouts[layout.to_s] = mod
@@ -26,6 +27,5 @@ module Modular
         @layouts[layout.to_s] = root_layout
       end
     end
-    
   end
 end
