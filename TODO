@@ -1,5 +1,3 @@
 ***	Allow accessing request object from components
 ** 	Write README with usage examples
-** 	Write sample app
-* 	Fix autotest discovery
 * 	Clean up obsolete classes/components in app
