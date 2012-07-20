@@ -1,5 +1,4 @@
 require 'rails'
-require 'modular/railtie'
 
 module Modular
   extend ActiveSupport::Autoload
@@ -35,3 +34,4 @@ end
 
 require "modular/components"
 require "modular/version"
+require 'modular/railtie'
