@@ -1,3 +1,4 @@
 /tmp/*
 /spec/internal/db/combustion_test.sqlite
 /pkg/
+Gemfile.lock
