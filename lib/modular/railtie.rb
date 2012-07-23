@@ -7,5 +7,9 @@ module TaggableCache
         ::ActionController::Base.__send__ :include, Modular::ActionControllerExtension
       end
     end
+
+    generators do
+      require "modular/generators/component/component_generator"
+    end    
   end  
 end
