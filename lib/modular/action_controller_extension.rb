@@ -1,7 +1,7 @@
 module Modular::ActionControllerExtension
   extend ActiveSupport::Concern
 
-  def render_modular_layout(name)
+  def modular_layout(name)
     layout = Modular.layout name
     render :text => layout.render
   end
