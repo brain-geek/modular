@@ -2,3 +2,4 @@
 /spec/internal/db/combustion_test.sqlite
 /pkg/
 Gemfile.lock
+/spec/internal/tmp

@@ -5,15 +5,15 @@ describe Modular::Configuration, ' as modular config' do
     component = Modular.create :fake_news_feed, :news_count => 50, :title => 'Best news feed'
     
     Modular.configure do
-      register_layout :simple, component
+      register_layout :testing_layout, component
     end
     
-    Modular.layout(:simple).to_json == component
+    Modular.layout(:testing_layout).to_json == component
   end
 
   it "should have DSL for registering layout" do
     Modular.configure do
-      register_layout :simple do
+      register_layout :testing_layout do
         add :fake_news_feed, :title => 'Best news feed'
         add :fake_news_feed, :title => 'Just news feed'
         
@@ -23,7 +23,7 @@ describe Modular::Configuration, ' as modular config' do
       end
     end
     
-    l = Modular.layout(:simple)
+    l = Modular.layout(:testing_layout)
     
     l.should be_a_kind_of Modular::Components::Container
     

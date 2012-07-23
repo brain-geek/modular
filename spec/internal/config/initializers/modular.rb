@@ -1,5 +1,8 @@
 Modular.configure do
-  register_layout :simple, Modular.create(:FakeNewsFeed, :news_count => 50, :title => 'Best news feed')
+  register_layout :simple do
+    add Modular.create(:FakeNewsFeed, :news_count => 50, :title => 'Best news feed')
+    add :main_content    
+  end
   
   register_layout :nested do
     add Modular.layout(:simple)
