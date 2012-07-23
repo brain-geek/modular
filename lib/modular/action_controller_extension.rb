@@ -2,13 +2,12 @@ module Modular::ActionControllerExtension
   extend ActiveSupport::Concern
 
   def modular_layout(name)
-    # binding.pry
     render :layout => get_layout_path(name)
   end
 
   def get_layout_path(name)
     if name.is_a?(Symbol) 
-      # binding.pry
+      
       name = self.__send__(name)
     end
 
@@ -20,7 +19,7 @@ module Modular::ActionControllerExtension
   module ClassMethods
     def modular_layout(name)
       proc = Proc.new do |controller|
-        # binding.pry
+        
         controller.send(:get_layout_path, name)
       end
       
