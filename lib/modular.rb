@@ -7,7 +7,6 @@ module Modular
     autoload :Creation
     autoload :Configuration
     autoload :LayoutGenerator
-    autoload :Helpers    
   end
 
   delegate :create, :from_json, :to => Creation

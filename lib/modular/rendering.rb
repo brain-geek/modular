@@ -21,15 +21,6 @@ module Modular::Rendering
     modular_render :render_type => :indirect
   end
 
-  # configure the different paths correctly
-  def initialize(*args)
-    super()
-    lookup_context.view_paths = Rails.root.join('app', 'views')
-    config.javascripts_dir = Rails.root.join('public', 'javascripts')
-    config.stylesheets_dir = Rails.root.join('public', 'stylesheets')
-    config.assets_dir = Rails.root.join('public')
-  end
-  
   # we are not in a browser, no need for this
   def protect_against_forgery?
     false
@@ -43,17 +34,6 @@ module Modular::Rendering
   def params
     {}
   end
-  
-  # # same asset host as the controllers
-  # self.asset_host = ActionController::Base.asset_host
-  
-  def initialize(attributes = {})
-    append_view_path(Rails.root.join('app', 'views'))
-    append_view_path(Gem.loaded_specs['modular'].full_gem_path + '/templates')
-
-    super
-  end
-  
   protected 
   def modular_render(args = {})
     render_to_string :file => 'components/' + action_name, :locals => args
