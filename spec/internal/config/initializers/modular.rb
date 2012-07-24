@@ -12,11 +12,6 @@ Modular.configure do
     add :MainContent
   end
   
-  register_layout :heavy do
-    add Modular.layout(:simple)
-    add :heavy_task
-  end
-  
   register_layout :cached_forever, Modular.create(:CachedForever)
   
   register_layout :cached_for_time, Modular.create(:CachedForTime)

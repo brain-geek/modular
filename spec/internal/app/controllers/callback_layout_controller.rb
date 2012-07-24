@@ -1,11 +1,11 @@
 class CallbackLayoutController < ApplicationController
-  modular_layout :method_name
-  
-  def method_name
-    'heavy'
-  end
+  modular_layout :callback_method
   
   def index
   end
 
+protected
+  def callback_method
+    'nested'
+  end
 end
