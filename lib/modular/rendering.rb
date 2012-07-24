@@ -1,39 +1,18 @@
 module Modular::Rendering
   extend ActiveSupport::Concern
   
-  def controller_path
-    'components'
-  end
-  
   def action_name
     type.underscore
   end
-
-  # def config
-  #   ActionController::Base.config
-  # end
   
   def execute
   end
-  
+
   def render
     execute
     modular_render :render_type => :indirect
   end
 
-  # we are not in a browser, no need for this
-  def protect_against_forgery?
-    false
-  end
-  
-  # so that your flash calls still work
-  def flash
-    {}
-  end
-
-  def params
-    {}
-  end
   protected 
   def modular_render(args = {})
     render_to_string :file => 'components/' + action_name, :locals => args

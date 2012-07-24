@@ -1,6 +1,9 @@
 module Modular::Components
-end
+  extend ActiveSupport::Autoload
 
-require "modular/components/base"
-require "modular/components/container"
-require "modular/components/main_content"
+  eager_autoload do
+    autoload :Base
+    autoload :Container
+    autoload :MainContent
+  end
+end

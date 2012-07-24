@@ -6,6 +6,7 @@ module Modular
   eager_autoload do
     autoload :Creation
     autoload :Configuration
+    autoload :Components
     autoload :LayoutGenerator
   end
 
@@ -31,6 +32,5 @@ module Modular
   extend self
 end
 
-require "modular/components"
 require "modular/version"
 require 'modular/railtie'
