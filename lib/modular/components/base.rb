@@ -25,7 +25,6 @@ module Modular
       include ActiveModel::Validations
       include ActiveModel::Conversion
       extend ActiveModel::Naming
-
         
       def self.attr_reader(*fields)
         fields.each do |field|
