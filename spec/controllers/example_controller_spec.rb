@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 describe ExampleController do
+  render_views
 
-  describe "GET 'index'" do
-    render_views
-
+  describe "straightforward rendering" do
     it "should be successful" do
       get 'index'
       
@@ -13,4 +12,13 @@ describe ExampleController do
     end
   end
 
+  describe "mustache rendering" do
+    it "should be successful" do
+      get 'mustache'
+      response.should be_success      
+      
+      response.body.should contain 'Text in layout'
+      response.body.should contain 'Text from mustache template - Text from template settings'
+    end
+  end
 end

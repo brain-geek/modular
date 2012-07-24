@@ -1,12 +1,18 @@
 require 'spec_helper'
 
 describe Modular::Components::Base, ' as basic module' do
-  it "should return type in class" do
-    Modular::Components::Base.type.should === 'Base'
-  end
-  
-  it "should return type in instance" do
-    Modular::Components::Base.new.type.should === 'Base'
+  describe "should return type"
+    it "in class" do
+      Modular::Components::Base.type.should === 'base'
+    end
+    
+    it "in instance" do
+      Modular::Components::Base.new.type.should === 'base'
+    end
+
+    it "in multi-part name" do
+      FakeNewsFeed.type.should === 'fake_news_feed'
+    end
   end
 
   it "should serialize components correctly" do

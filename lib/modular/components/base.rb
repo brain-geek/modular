@@ -15,11 +15,24 @@ module Modular
 
       #slug
       def self.type
-        self.name.rpartition("::").last
+        self.name.demodulize.underscore
       end
       
       def type
         self.class.type
+      end
+
+      def self.use_mustached_template!
+        self.class_eval do
+          def render
+            require 'mustache'
+
+            path = Rails.root + "app/views/components/#{type}.mst"
+            template = File.open(path, "rb").read
+
+            Mustache.render(template, @attributes)
+          end
+        end
       end
 
       include ActiveModel::Validations
