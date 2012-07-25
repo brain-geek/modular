@@ -18,14 +18,21 @@ module Modular
       component
     end
     
-    def from_json(text)
-      obj = ActiveSupport::JSON.decode text
-      raise "Type expected in json string" unless obj[json_type_key]
-      create(obj[json_type_key], obj.except(json_type_key))
-    end
+    def from_json(obj)
+      obj = ActiveSupport::JSON.decode obj if obj.is_a? String
+      raise "Type expected in json string" unless obj['type']
+      component = create(obj['type'], obj.except('type').except("children"))
 
-    def json_type_key
-      'type'
+      if obj.has_key?('children') && component.is_a?(Modular::Components::Container)
+        obj['children'].each do |child|
+          if child.is_a? Hash
+            child_component = from_json(child)
+            component.add(child_component)
+          end
+        end
+      end
+
+      component
     end
 
     extend self

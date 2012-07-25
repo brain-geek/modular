@@ -27,11 +27,11 @@ describe Modular::Configuration, ' as modular config' do
     
     l.should be_a_kind_of Modular::Components::Container
     
-    l.components[0..1].each do |e|
+    l.children[0..1].each do |e|
       e.should be_a_kind_of FakeNewsFeed
     end
 
-    l.components.length.should == 3
+    l.children.length.should == 3
   end
 
   it "should return list of layouts" do

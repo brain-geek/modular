@@ -1,7 +1,7 @@
 <table>
   <tr><td>
-    <% @attributes[:components].each do |component| %>
-		<%=render_component component %>
+    <% @attributes[:children].each do |child| %>
+		  <%= render_component child %>
     <% end %>
   </td></tr>
 </table>
