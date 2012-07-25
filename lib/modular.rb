@@ -12,18 +12,7 @@ module Modular
 
   delegate :create, :from_json, :to => Creation
   delegate :config, :configure, :to => Configuration
-  
-  def layout(id)
-    if Configuration.config.layouts.has_key?(id)
-      Configuration.config.layouts[id]
-    else
-      raise "Layout '#{id}' not found"
-    end
-  end
-
-  def layouts
-    Configuration.config.layouts
-  end
+  delegate :layout, :layouts, :to => :config
   
   def generate_rails_layout(id, params = {})
     LayoutGenerator.generate(id, params)

@@ -15,6 +15,14 @@ module Modular
       instance.instance_eval &block if block_given?
       instance
     end
+
+    def layout(id)
+      if layouts.has_key?(id)
+        layouts[id]
+      else
+        raise "Layout '#{id}' not found"
+      end      
+    end
     
     def register_layout(layout, mod = :container, params = {}, &block)
       @layouts ||= Hash.new.with_indifferent_access
