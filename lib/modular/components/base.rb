@@ -89,6 +89,7 @@ EOF
 
       #params for element itself
       attr_accessor :title
+      attr_accessor_with_default :width, 0
       
       validates :title, :length => {:maximum => 64}      
     
