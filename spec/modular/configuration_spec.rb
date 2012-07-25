@@ -8,7 +8,7 @@ describe Modular::Configuration, ' as modular config' do
       register_layout :testing_layout, component
     end
     
-    Modular.layout(:testing_layout).to_json == component
+    Modular.layout(:testing_layout).should == component
   end
 
   it "should have DSL for registering layout" do

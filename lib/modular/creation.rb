@@ -20,9 +20,13 @@ module Modular
     
     def from_json(text)
       obj = ActiveSupport::JSON.decode text
-      raise "Type expected in json string" unless obj['type']
-      create(obj['type'], obj.except('type'))
-    end    
+      raise "Type expected in json string" unless obj[json_type_key]
+      create(obj[json_type_key], obj.except(json_type_key))
+    end
+
+    def json_type_key
+      'type'
+    end
 
     extend self
   end
