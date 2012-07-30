@@ -8,6 +8,7 @@ module Modular
     autoload :Configuration
     autoload :Components
     autoload :LayoutGenerator
+    autoload :MstRendering
   end
 
   delegate :create, :from_json, :to => Creation

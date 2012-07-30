@@ -23,15 +23,9 @@ module Modular
       end
 
       def self.use_mustached_template!
+        require 'mustache'
         self.class_eval do
-          def render
-            require 'mustache'
-
-            path = Rails.root + "app/views/components/#{type}.mst"
-            template = File.open(path, "rb").read
-
-            Mustache.render(template, @attributes).html_safe
-          end
+          include Modular::MstRendering
         end
       end
 
