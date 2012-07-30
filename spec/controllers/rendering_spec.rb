@@ -13,12 +13,21 @@ describe ExampleController do
   end
 
   describe "mustache rendering" do
-    it "should be successful" do
+    it "simple" do
       get 'mustache'
       response.should be_success      
       
       response.body.should contain 'Text in layout'
       response.body.should contain 'Text from mustache template - Text from template settings'
+    end
+
+    it "nested" do
+      get 'mustache_nested'
+      response.should be_success      
+      
+      response.body.should contain 'Text from container settings - asdfgh'
+      response.body.should contain 'Text from mustache template - Text from template settings'
+      response.body.should contain 'Text from mustache template - Other text from template settings'      
     end
   end
 end

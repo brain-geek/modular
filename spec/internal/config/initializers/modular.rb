@@ -14,6 +14,11 @@ Modular.configure do
 
   register_layout :mustached, :mustached, :text => 'Text from template settings'
 
+  register_layout :mustache_nested, :mustache_container, :text => 'asdfgh' do
+    add Modular.layout(:mustached)
+    add :mustached, :text => 'Other text from template settings'
+  end
+
   register_layout :cached_forever, Modular.create(:CachedForever)
   
   register_layout :cached_for_time, Modular.create(:CachedForTime)

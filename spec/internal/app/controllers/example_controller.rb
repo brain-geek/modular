@@ -6,4 +6,8 @@ class ExampleController < ApplicationController
   def mustache
     modular_layout 'mustached'
   end
+
+  def mustache_nested
+    modular_layout 'mustache_nested'
+  end
 end
