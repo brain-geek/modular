@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Modular::Components::Base, ' as basic module' do
-  describe "should return type"
+  describe "should return type" do
     it "in class" do
       Modular::Components::Base.type.should === 'base'
     end

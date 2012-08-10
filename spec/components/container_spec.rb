@@ -5,15 +5,8 @@ describe Modular::Components::Container, ' vertical container class ' do
     @cmp = described_class.new
   end
   
-  it "should have container" do
+  it "should have children" do
     @cmp.children.should be_a_kind_of Array
-  end
-  
-  it "should unserialize children" do
-    @cmp.children.push Modular.create(:FakeNewsFeed, { :news_count => 50, :title => 'Best news feed' }).to_json
-    json = @cmp.to_json
-    container = Modular.from_json(json)
-    container.children[0].should be_a_kind_of FakeNewsFeed
   end
   
   it "should have add_container and add_child methods" do
