@@ -59,31 +59,11 @@ EOF
           attr_reader field
         end
       end
-      
-      def self.attr_accessor_with_default(sym, default = Proc.new)
-        define_method(sym, block_given? ? default : Proc.new { default })
-        module_eval(<<-EVAL, __FILE__, __LINE__ + 1)
-          def #{sym}=(value)                          # def age=(value)
-            class << self; attr_accessor :#{sym} end  #   class << self; attr_accessor :age end
-            @attributes['#{sym}']=value               #   @attributes['age'] = value
-          end                                         # end
-        EVAL
-      end
-
-      def self.attr_reader_with_default(sym, default = Proc.new)
-        define_method(sym, block_given? ? default : Proc.new { default })
-        module_eval(<<-EVAL, __FILE__, __LINE__ + 1)
-          def #{sym}=(value)                          # def age=(value)
-            class << self; attr_reader :#{sym} end    #   class << self; attr_accessor :age end
-            @attributes['#{sym}']=value               #   @attributes['age'] = value
-          end                                         # end
-        EVAL
-      end      
-
 
       #params for element itself
       attr_accessor :title
-      attr_accessor_with_default :width, 0
+      attr_accessor :uniqid
+      attr_accessor :width
       
       validates :title, :length => {:maximum => 64}      
     
@@ -93,6 +73,9 @@ EOF
 
         @attributes ||= ActiveSupport::HashWithIndifferentAccess.new
         
+        @attributes[:uniqid] = ''
+        @attributes[:width] = 0
+
         attributes.each do |name, value|
           @attributes[name.to_s] = value
         end
@@ -101,9 +84,18 @@ EOF
       def persisted?
         false
       end
+
+      def to_hash
+        @attributes.merge({:type => type})
+      end
       
       def to_json
-        ActiveSupport::JSON.encode @attributes.merge({:type => type})
+        ActiveSupport::JSON.encode to_hash
+      end
+
+      def all_errors
+        valid? #this call is used to make validation calls
+        { uniqid => errors.to_a }
       end
     end
   end

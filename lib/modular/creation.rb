@@ -12,14 +12,14 @@ module Modular
       rescue Exception => e
         raise "Unable to create element " + typ.to_s
       end
-
-      raise "Component has errors: " + component.errors.to_s if component.invalid?
       
       component
     end
     
     def from_json(obj)
       obj = ActiveSupport::JSON.decode obj if obj.is_a? String
+      obj = obj.with_indifferent_access
+      
       raise "Type expected in json string" unless obj['type']
       component = create(obj['type'], obj.except('type').except("children"))
 
