@@ -21,16 +21,23 @@ module Modular
         children.push cont
       end
 
-      def valid?(context = nil)
+      def valid_with_children?(context = nil)
         children.each do |child|
           return false if child.invalid?
         end
 
-        super
+        valid_with_no_children?
       end
 
+      alias_method :valid_with_no_children?, :valid?
+      alias_method :valid?, :valid_with_children?
+
       def all_errors
-        errs = super
+        if valid_with_no_children?
+          errs = {} 
+        else
+          errs = super
+        end
 
         children.each do |child|
           e = child.all_errors

@@ -4,13 +4,9 @@ module Modular
       return typ if typ.is_a? Modular::Components::Base
       
       begin
-        begin
-          component = typ.to_s.camelize.constantize.new params
-        rescue NameError
-          component = (Components.name + '::' + typ.to_s.camelize).constantize.new params
-        end
-      rescue Exception => e
-        raise "Unable to create element " + typ.to_s
+        component = typ.to_s.camelize.constantize.new params
+      rescue NameError
+        component = (Components.name + '::' + typ.to_s.camelize).constantize.new params
       end
       
       component
