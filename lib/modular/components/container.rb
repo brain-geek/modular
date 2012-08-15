@@ -15,10 +15,12 @@ module Modular
         super(attributes.except("children"))
       end
       
-      def add(type, args = {}, &block)
-        cont = Modular.create(type, args)
-        cont.instance_eval &block if block_given?
-        children.push cont
+      def add(type = nil, args = {}, &block)
+        unless type.nil?
+          cont = Modular.create(type, args)
+          cont.instance_eval &block if block_given?
+          children.push cont
+        end
       end
 
       def valid_with_children?(context = nil)

@@ -8,6 +8,11 @@ describe Modular::Components::Container, ' vertical container class ' do
   it "should have children" do
     @cmp.children.should be_a_kind_of Array
   end
+
+  it "should not fail if nil passed to add" do
+    @cmp.add nil
+    @cmp.children.should be_empty
+  end
   
   it "should have add_container and add_child methods" do
     @cmp.add :container, :title => 'Test container title' do
