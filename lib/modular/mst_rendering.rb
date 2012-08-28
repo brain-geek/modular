@@ -1,10 +1,12 @@
 module Modular
+  class Template < ::Mustache
+  end
+
   module MstRendering
     def render
-      path = Rails.root + "app/views/components/#{type}.mst"
-      template = File.open(path, "rb").read
-
-      Mustache.render(template, @attributes).html_safe
+      Template.template_path = Rails.root + "app/views/components"
+      Template.template_extension = 'mst'
+      Template.render_file("./#{type}", @attributes).html_safe
     end
   end
 end
