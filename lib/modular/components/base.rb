@@ -97,6 +97,10 @@ EOF
         valid? #this call is used to make validation calls
         { uniqid => errors.to_a }
       end
+
+      def find_by_uniqid(id)
+        self if id == uniqid.to_s
+      end
     end
   end
 end

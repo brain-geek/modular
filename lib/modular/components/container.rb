@@ -53,6 +53,18 @@ module Modular
 
         errs
       end      
+      def find_by_uniqid(id)
+        result = super
+
+        if result.nil?
+          children.each do |child|
+            result = child.find_by_uniqid(id)
+            return result unless result.nil?
+          end
+        end
+
+        result
+      end
     end
   end
 end
