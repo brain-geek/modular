@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Modular, ' finders ' do
-  describe "simple objects finding" do
+  describe "simple objects" do
     let(:element) { Modular.create(:fake_news_feed, :news_count => 50, :title => 'Best news feed', :uniqid => 'asdf') }
 
     it "finds itself" do
@@ -13,7 +13,7 @@ describe Modular, ' finders ' do
     end
   end
 
-  describe "containers finding" do
+  describe "containers" do
     let(:element) { Modular.create(:container, :uniqid => 'asdf') }
 
     it "finds itself" do
