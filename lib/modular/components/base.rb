@@ -99,7 +99,7 @@ EOF
       end
 
       def find_by_uniqid(id)
-        self if id == uniqid.to_s
+        self if id.to_s == uniqid.to_s
       end
     end
   end

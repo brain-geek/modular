@@ -20,6 +20,10 @@ describe Modular, ' finders ' do
       element.find_by_uniqid('asdf').should be element
     end
 
+    it "finds itself as symbol" do
+      element.find_by_uniqid(:asdf).should be element
+    end
+
     it "does not find itself if id is wrong" do
       element.find_by_uniqid('qwe').should be_nil
     end

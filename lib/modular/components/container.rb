@@ -54,6 +54,8 @@ module Modular
         errs
       end      
       def find_by_uniqid(id)
+        id = id.to_s
+
         result = super
 
         if result.nil?
