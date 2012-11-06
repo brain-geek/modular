@@ -18,8 +18,4 @@ Modular.configure do
     add Modular.layout(:mustached)
     add :mustached, :text => 'Other text from template settings'
   end
-
-  register_layout :cached_forever, Modular.create(:CachedForever)
-  
-  register_layout :cached_for_time, Modular.create(:CachedForTime)
 end

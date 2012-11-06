@@ -1,6 +1,5 @@
 require 'abstract_controller'
 require "modular/rendering"
-require "modular/caching"
 require 'active_model'
 
 module Modular
