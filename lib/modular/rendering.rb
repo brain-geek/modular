@@ -8,16 +8,13 @@ module Modular::Rendering
   def execute
   end
 
-  def render
+  def render(args = {})
     execute
-    modular_render :render_type => :indirect
+    render_to_string :file => 'components/' + action_name, :locals => args
   end
 
   protected 
-  def modular_render(args = {})
-    render_to_string :file => 'components/' + action_name, :locals => args
-  end
-  
+ 
   module ClassMethods
     def view_context_class
       context = super

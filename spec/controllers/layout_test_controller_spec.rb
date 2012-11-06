@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe LayoutTestController do
-  describe "prerequirements" do
+  describe "requirements" do
     it "should render itself" do
       Modular.layout(:nested).render
     end
@@ -33,6 +33,27 @@ describe LayoutTestController do
     it "should not be cached" do
       get 'index'
     end
-    
+  end
+
+  it "it should not call render twice" do
+    File.unlink("#{Rails.root}/tmp/modular/nested.html.erb") rescue
+
+    Rails.configuration.action_controller.perform_caching = true
+
+    SimpleModel.should_receive(:foobar_method).twice
+
+    get 'index'
+
+    Rails.configuration.action_controller.perform_caching = true
+
+    get 'index'
+    get 'index'
+
+    File.unlink("#{Rails.root}/tmp/modular/nested.html.erb") rescue
+
+    get 'index'
+
+    get 'index'
+    get 'index'    
   end
 end

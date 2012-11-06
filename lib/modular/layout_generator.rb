@@ -34,12 +34,16 @@ module Modular
     end
       
     def filename
-      foldername + (@id.to_s + (@params[:cache_key].to_s) + '.html.erb')
+      foldername + (@id.to_s + @params[:cache_key].to_s + '.html.erb')
+    end
+
+    def full_filepath
+      "#{Rails.root}/#{filename}"
     end
     
     def layout_exists?
       if Rails.configuration.action_controller.perform_caching
-        File.exists?(filename)
+        File.exists?(full_filepath)
       else
         false
       end
@@ -55,7 +59,7 @@ module Modular
       template = ERB.new File.new(Gem.loaded_specs['modular'].full_gem_path + '/templates/layout.erb').read
       output = template.result(ERBContext.new(template_variables).get_binding)
       
-      File.open("#{Rails.root}/#{filename}", 'w') do |f| 
+      File.open(full_filepath, 'w') do |f| 
         f.write(output)
       end
     end

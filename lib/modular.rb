@@ -15,10 +15,6 @@ module Modular
   delegate :config, :configure, :to => Configuration
   delegate :layout, :layouts, :to => :config
   
-  def generate_rails_layout(id, params = {})
-    LayoutGenerator.generate(id, params)
-  end
-  
   extend self
 end
 
