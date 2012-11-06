@@ -2,7 +2,7 @@
 ---
 Added possibility to find by uniqid.
 
-0.2.5 (not yet released)
+0.2.5
 ---
 Remove obsolete 'caching' functionality
 Fix layout generation - it will not be generated if already exists on FS. Cleanup should be done from the application itself.
