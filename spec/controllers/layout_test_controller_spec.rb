@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe LayoutTestController do
+  render_views
+
   describe "requirements" do
     it "should render itself" do
       Modular.layout(:nested).render
     end
   end
   
-  describe "GET 'index'" do
-    render_views
-    
+  describe "rendering" do
     before :each do
       get 'index'
     end
@@ -35,7 +35,7 @@ describe LayoutTestController do
     end
   end
 
-  it "it should not call render twice" do
+  it "should not call render twice" do
     File.unlink("#{Rails.root}/tmp/modular/nested.html.erb") rescue
 
     Rails.configuration.action_controller.perform_caching = true
