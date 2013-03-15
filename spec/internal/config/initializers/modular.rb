@@ -12,6 +12,8 @@ Modular.configure do
     add :MainContent
   end
 
+  register_layout :irb_nested, :irb_nested_code
+
   register_layout :mustached, :mustached, :text => 'Text from template settings'
 
   register_layout :mustache_nested, :mustache_container, :text => 'asdfgh' do

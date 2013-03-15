@@ -3,10 +3,14 @@ require 'erb'
 module Modular
   class LayoutGenerator
     class ERBContext
+      include ActionView::Context
+
       def initialize(hash = {})
         hash.each_pair do |key, value|
           instance_variable_set('@' + key.to_s, value)
         end
+
+        _prepare_context
       end
     
       def get_binding
@@ -56,8 +60,18 @@ module Modular
 
       Dir.mkdir(path) unless File.exists? path
       
-      template = ERB.new File.new(Gem.loaded_specs['modular'].full_gem_path + '/templates/layout.erb').read
-      output = template.result(ERBContext.new(template_variables).get_binding)
+      template = File.new(Gem.loaded_specs['modular'].full_gem_path + '/templates/layout.erb').read
+
+      binding.pry
+      output = Erubis::Eruby.new(template).evaluate(ERBContext.new(template_variables))
+
+      # Erubis::Eruby.new(template,:trim => false
+      #     ).src
+
+      # binding.pry
+
+      # tpl = ActionView::Template.new(template, "modular template", ActionView::Template::Handlers::ERB.new, {})
+      # tpl.render(ERBContext.new, template_variables)
       
       File.open(full_filepath, 'w') do |f| 
         f.write(output)

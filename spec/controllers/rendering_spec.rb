@@ -30,4 +30,13 @@ describe ExampleController do
       response.body.should contain 'Text from mustache template - Other text from template settings'      
     end
   end
+
+  describe "irb nested rendering" do
+    it "should render nested IRB data" do
+      get 'irb_nested'
+
+      response.body.should contain 'Symbol'
+      response.body.should contain 'hello_world_symbol'
+    end
+  end
 end

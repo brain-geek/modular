@@ -1,10 +1,14 @@
-<%% @layout_id = '<%=@layout_id%>'.to_sym %>
+<% binding.pry %>
+<%% binding.pry %>
+
+<%% @layout_id = "<%=@layout_id%>".to_sym %>
 
 <%= Modular.layout(@layout_id).render %>
 
 <%% 
     layout = '<%=@original_layout%>'
     #Old one is @_content_for
+    binding.pry
     @view_flow.content[:layout] = self.output_buffer
     self.output_buffer = render(:file => "layouts/#{layout}")
  %>
