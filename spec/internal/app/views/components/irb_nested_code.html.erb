@@ -1,3 +1,6 @@
-<%% a = Marshal.load('<%= Marshal.dump(:hello_world_symbol)) %>') %>
+<% var_for_export = :hello_world_symbol %>
+
+<%== '<' + '%' + ' a = Marshal.load(%{' + Marshal.dump(var_for_export) + '}) ' + '%' + '>' %>
+
 <%%= a.class %>
 <%%= a.to_s %>
