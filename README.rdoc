@@ -18,4 +18,4 @@ See example in spec/internal.
 
 == Copyright
 
-Copyright (c) 2011-2012 Alex Rozumey. See LICENSE for further details.
+Copyright (c) 2011-2013 Alex Rozumey. See LICENSE for further details.
