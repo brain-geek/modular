@@ -3,6 +3,7 @@ require 'bundler'
 Bundler.require :default, :development
 
 require 'capybara/rspec'
+require 'rails'
 
 Combustion.initialize!
 
