@@ -5,6 +5,7 @@ This gem makes changing layout structure as easy as change ruby hash structure.
 = Build Status {<img src="https://secure.travis-ci.org/brain-geek/modular.png"/>}[http://travis-ci.org/brain-geek/modular]
 
 = How to use
+
 See example in spec/internal.
 
 == Contributing to modular
